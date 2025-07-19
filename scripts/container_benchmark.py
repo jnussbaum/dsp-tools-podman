@@ -37,12 +37,20 @@ def task_to_measure():
     subprocess.run(["dsp-tools", "start-stack", "--no-prune"], check=True)
 
 
-def run_performance_tests():
+def main():
     container_engine: Literal["podman", "docker"] = "podman"
     os.environ["CONTAINER_ENGINE"] = container_engine
     sudo_password = setup_sudo()
 
     runner = pyperf.Runner()
     runner.timeit(
-        name="run start-stack", stmt="task_to_measure()", setup="setup(sudo_password)", teardown="teardown()"
+        name="run start-stack",
+        stmt="task_to_measure()",
+        setup="setup(sudo_password)",
+        teardown="teardown()",
+        globals=globals(),
     )
+
+
+if __name__ == "__main__":
+    main()

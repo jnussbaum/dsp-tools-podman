@@ -1,0 +1,22 @@
+---
+
+name: Benchmark start-stack
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pull-requests: read
+
+jobs:
+  benchmark:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout dsp-tools repo
+        uses: actions/checkout@v4
+      - name: Install uv, just, and dependencies
+        uses: ./.github/actions/setup
+      - name: benchmark start-stack
+        run: uv run scripts/benchmark_xmlupload.py
+

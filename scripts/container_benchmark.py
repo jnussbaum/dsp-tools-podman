@@ -1,7 +1,5 @@
-import getpass
 import os
 import subprocess
-import warnings
 from typing import Literal
 
 import pyperf
@@ -29,7 +27,7 @@ def task_to_measure():
 
 
 def main():
-    container_engine: Literal["podman", "docker"] = "podman"
+    container_engine: Literal["podman", "docker"] = "docker"
     os.environ["CONTAINER_ENGINE"] = container_engine
 
     runner = pyperf.Runner(

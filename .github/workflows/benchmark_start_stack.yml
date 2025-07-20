@@ -32,7 +32,7 @@ jobs:
           sudo apt remove crun -y
           
           # Install a more modern crun from GitHub releases
-          curl -L -o crun https://github.com/containers/crun/releases/download/1.22/crun-1.14.4-linux-amd64
+          curl -L -o crun https://github.com/containers/crun/releases/download/1.14.4/crun-1.14.4-linux-amd64
           sudo mv crun /usr/local/bin/crun
           sudo chmod +x /usr/local/bin/crun
           

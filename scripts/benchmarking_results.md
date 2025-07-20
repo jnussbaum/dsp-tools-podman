@@ -33,6 +33,11 @@ xmlupload: Mean +- std dev: 43.5 sec +- 1.5 sec
 
 ## Linux
 
+## Modalities
+
+podman version 5.5.2
+podman-compose version: 1.0.6
+
 ### start-stack
 
 docker:

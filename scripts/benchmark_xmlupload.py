@@ -49,7 +49,7 @@ def task_to_measure():
 
 
 def main():
-    container_engine: Literal["podman", "docker"] = "docker"
+    container_engine: Literal["podman", "docker"] = "podman"
     os.environ["CONTAINER_ENGINE"] = container_engine
     logger.info(f"Container engine: {container_engine}")
 

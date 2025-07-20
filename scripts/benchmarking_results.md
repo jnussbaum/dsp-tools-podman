@@ -7,6 +7,8 @@
 podman-compose version 1.5.0
 podman version 5.5.2
 
+crun/runc ???
+
 Docker version 28.3.2
 Docker Compose version v2.38.2
 
@@ -40,17 +42,21 @@ xmlupload: Mean +- std dev: 43.5 sec +- 1.5 sec
 
 podman version 5.5.2
 podman-compose version: 1.0.6
+crun version 1.14.4
 
 docker ???
 docker-compose ???
+crun/runc ???
 
 ### start-stack
 
 docker:
-start-stack: Mean +- std dev: 21.6 sec +- 0.5 sec
+start-stack: Mean +- std dev: 21.6 sec +- 0.5 sec !!! UNVERIFIED DOCKER VERSION
 (https://github.com/jnussbaum/dsp-tools-podman/actions/runs/16401669907/job/46341996845)
 
 podman:
+
+(https://github.com/jnussbaum/dsp-tools-podman/actions/runs/16403464117/job/46346085822)
 
 
 ### xmlupload
@@ -60,3 +66,5 @@ docker:
 ()
 
 podman:
+
+(https://github.com/jnussbaum/dsp-tools-podman/actions/runs/16403513137/job/46346196853)

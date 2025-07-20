@@ -4,6 +4,9 @@
 
 ### Modalities
 
+podman-compose version 1.5.0
+podman version 5.5.2
+
 pyperf.Runner which spawns 4 processes, which each run 1 warmup and 3 measurements.
 This results in 12 measurements.
 Before doing the actual measurements, pyperf spawns 1 calibrating process which also runs 1 warmup + 3 measurements.

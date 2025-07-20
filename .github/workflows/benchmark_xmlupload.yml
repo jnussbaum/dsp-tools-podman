@@ -17,6 +17,15 @@ jobs:
         uses: actions/checkout@v4
       - name: Install uv, just, and dependencies
         uses: ./.github/actions/setup
+      - name: Install Podman and podman-compose
+        run: |
+          sudo apt update
+          sudo apt-get -y install podman
+          uv add podman-compose
+      - name: Versions of podman and podman-compose
+        run: |
+          podman --version
+          podman-compose --version
       - name: benchmark xmlupload
         run: uv run scripts/benchmark_xmlupload.py
 

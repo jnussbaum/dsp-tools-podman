@@ -31,8 +31,8 @@ jobs:
           # Remove old crun
           sudo apt remove crun -y
           
-          # Install latest crun from GitHub releases
-          curl -L -o crun https://github.com/containers/crun/releases/latest/download/crun-linux-amd64
+          # Install a more modern crun from GitHub releases
+          curl -L -o crun https://github.com/containers/crun/releases/download/1.22/crun-1.14.4-linux-amd64
           sudo mv crun /usr/local/bin/crun
           sudo chmod +x /usr/local/bin/crun
           

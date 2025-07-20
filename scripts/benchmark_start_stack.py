@@ -21,10 +21,10 @@ def clear_linux_system_caches() -> None:
     subprocess.run(["sudo", "sh", "-c", "sync && echo 3 > /proc/sys/vm/drop_caches"], check=False)
 
 
-def setup(container_engine: Literal["podman", "docker"]) -> None:
+def setup() -> None:
     if platform.system() == "Darwin":
-        if container_engine == "docker":
-            clear_mac_system_caches()
+        pass
+        # clear_mac_system_caches() only works for docker
     elif platform.system() == "Linux":
         clear_linux_system_caches()
     else:
@@ -58,7 +58,7 @@ def main():
     runner.timeit(
         name="start-stack",
         stmt="task_to_measure()",
-        setup="setup(container_engine)",
+        setup="setup()",
         teardown="teardown()",
         globals=globals() | locals(),
     )

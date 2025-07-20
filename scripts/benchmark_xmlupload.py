@@ -11,11 +11,12 @@ def clear_mac_system_caches() -> None:
     """Sync filesystem with 'sync' and clear system caches using 'purge'"""
     subprocess.run(["sync"], check=False)
     subprocess.run(["purge"], check=False)
+    'sudo sh -c "sync && echo 3 > /proc/sys/vm/drop_caches"'
 
 
 def setup() -> None:
-    # clear_mac_system_caches()
-    pass
+    clear_mac_system_caches()
+    subprocess.run(["dsp-tools", "start-stack", "--no-prune"], check=True)
 
 
 def teardown() -> None:
@@ -23,7 +24,8 @@ def teardown() -> None:
 
 
 def task_to_measure():
-    subprocess.run(["dsp-tools", "start-stack", "--no-prune"], check=True)
+    subprocess.run(["dsp-tools", "create", "testdata/json-project/test-project-systematic.json"], check=True)
+    subprocess.run(["dsp-tools", "xmlupload", "testdata/xml-data/test-data-systematic.xml"], check=True)
 
 
 def main():

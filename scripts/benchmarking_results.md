@@ -14,3 +14,6 @@ run start-stack: Mean +- std dev: 15.2 sec +- 0.3 sec
 
 docker:
 run start-stack: Mean +- std dev: 12.2 sec +- 0.5 sec
+
+docker (with cache emptyyin)
+run start-stack: Mean +- std dev: 12.8 sec +- 0.5 sec

@@ -23,11 +23,12 @@ jobs:
           tar -xzf podman-linux-amd64.tar.gz
           sudo cp -r podman-linux-amd64/usr podman-linux-amd64/etc /
       - name: Install podman-compose
-        run: sh -c "$(curl -sSL https://raw.githubusercontent.com/containers/podman-compose/main/scripts/download_and_build_podman-compose.sh)"
+        run: uv add podman-compose
       - name: Versions of podman and podman-compose
         run: |
           podman --version
           podman-compose --version
+          which podman-compose
       - name: benchmark start-stack
         run: uv run scripts/benchmark_start_stack.py
 

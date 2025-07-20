@@ -7,6 +7,9 @@
 podman-compose version 1.5.0
 podman version 5.5.2
 
+Docker version 28.3.2
+Docker Compose version v2.38.2
+
 pyperf.Runner which spawns 4 processes, which each run 1 warmup and 3 measurements.
 This results in 12 measurements.
 Before doing the actual measurements, pyperf spawns 1 calibrating process which also runs 1 warmup + 3 measurements.
@@ -37,6 +40,9 @@ xmlupload: Mean +- std dev: 43.5 sec +- 1.5 sec
 
 podman version 5.5.2
 podman-compose version: 1.0.6
+
+docker ???
+docker-compose ???
 
 ### start-stack
 

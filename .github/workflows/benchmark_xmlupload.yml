@@ -17,6 +17,6 @@ jobs:
         uses: actions/checkout@v4
       - name: Install uv, just, and dependencies
         uses: ./.github/actions/setup
-      - name: benchmark start-stack
+      - name: benchmark xmlupload
         run: uv run scripts/benchmark_xmlupload.py
 

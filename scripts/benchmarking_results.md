@@ -24,3 +24,23 @@ run start-stack: Mean +- std dev: 12.8 sec +- 0.5 sec
 
 docker
 xmlupload: Mean +- std dev: 44.8 sec +- 0.6 sec
+
+podman
+xmlupload: Mean +- std dev: 43.5 sec +- 1.5 sec
+
+## Linux
+
+### start-stack
+
+docker:
+start-stack: Mean +- std dev: 21.6 sec +- 0.5 sec
+
+podman:
+
+
+### xmlupload
+
+docker:
+
+
+podman:

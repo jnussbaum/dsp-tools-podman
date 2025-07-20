@@ -11,11 +11,17 @@ def clear_mac_system_caches() -> None:
     """Sync filesystem with 'sync' and clear system caches using 'purge'"""
     subprocess.run(["sync"], check=False)
     subprocess.run(["purge"], check=False)
-    'sudo sh -c "sync && echo 3 > /proc/sys/vm/drop_caches"'
 
+
+def clear_linux_system_caches() -> None:
+    """Sync filesystem with 'sync' and clear system caches using 'echo 3 > /proc/sys/vm/drop_caches'"""
+    subprocess.run(["sync"], check=False)
+    subprocess.run(["sudo", "sh", "-c", "sync && echo 3 > /proc/sys/vm/drop_caches"], check=False)
+    
 
 def setup() -> None:
-    clear_mac_system_caches()
+    # clear_mac_system_caches()
+    clear_linux_system_caches()
     subprocess.run(["dsp-tools", "start-stack", "--no-prune"], check=True)
 
 
@@ -44,7 +50,7 @@ def main():
         add_cmdline_args=None,  # default = None
     )
     runner.timeit(
-        name="run start-stack",
+        name="xmlupload",
         stmt="task_to_measure()",
         setup="setup()",
         teardown="teardown()",

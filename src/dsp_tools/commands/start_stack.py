@@ -212,7 +212,10 @@ class StackHandler:
             cmd, cwd=self.__docker_path_of_user, check=False, env=self.__stack_configuration.environment
         )
         if not completed_process or completed_process.returncode != 0:
-            msg = "Cannot start the API: Error while executing 'docker compose up -d db'"
+            msg = (
+                f"Cannot start the API: Error while executing 'docker compose up -d db'."
+                f"\n{completed_process.stderr.decode('utf-8') = }"
+            )
             logger.error(f"{msg}. completed_process = '{vars(completed_process)}'")
             raise InputError(msg)
 
@@ -468,9 +471,7 @@ class StackHandler:
             True if everything went well, False otherwise
         """
         cmd = f"{self.__stack_configuration.container_engine} stats --no-stream"
-        res = subprocess.run(
-            cmd.split(), check=False, capture_output=True, env=self.__stack_configuration.environment
-        )
+        res = subprocess.run(cmd.split(), check=False, capture_output=True, env=self.__stack_configuration.environment)
         if res.returncode != 0:
             raise InputError(
                 f"Docker is not running properly. Please start Docker and try again.\n"

@@ -1,6 +1,6 @@
 ---
 
-name: Benchmark start-stack
+name: Benchmark xmlupload
 
 on:
   workflow_dispatch:

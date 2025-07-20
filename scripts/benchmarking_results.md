@@ -1,6 +1,6 @@
 # Benchmarking Results
 
-## Macbook
+## Mac
 
 ### Modalities
 
@@ -12,8 +12,8 @@ So in total, the code is executed 20 times, but only 12 are used for the measure
 podman
 run start-stack: Mean +- std dev: 15.2 sec +- 0.3 sec
 
-docker:
+docker
 run start-stack: Mean +- std dev: 12.2 sec +- 0.5 sec
 
-docker (with cache emptyyin)
+docker (with cache resetting)
 run start-stack: Mean +- std dev: 12.8 sec +- 0.5 sec

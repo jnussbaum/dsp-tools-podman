@@ -26,6 +26,18 @@ jobs:
         run: |
           sudo sed -i 's|/usr/bin/|/usr/local/bin/|g' /etc/apparmor.d/podman 2>/dev/null || true
           sudo apparmor_parser -r /etc/apparmor.d/podman 2>/dev/null || true
+      - name: Update crun
+        run: | 
+          # Remove old crun
+          sudo apt remove crun -y
+          
+          # Install a more modern crun from GitHub releases
+          curl -L -o crun https://github.com/containers/crun/releases/download/1.14.4/crun-1.14.4-linux-amd64
+          sudo mv crun /usr/local/bin/crun
+          sudo chmod +x /usr/local/bin/crun
+          
+          # Verify the version
+          crun --version
       - name: Install podman-compose
         run: uv add podman-compose
       - name: Versions of podman and podman-compose

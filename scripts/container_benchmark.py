@@ -9,24 +9,15 @@ import pyperf
 # ruff: noqa:S607 (Starting a process with a partial executable path)
 
 
-def setup_sudo() -> str:
-    """Get sudo password once at script start"""
-    return getpass.getpass(prompt="Enter sudo password for cache clearing: ")
-
-
-def clear_mac_system_caches(sudo_password: str) -> None:
-    """Sync filesystem with 'sync' and clear system caches using 'sudo -S purge'"""
+def clear_mac_system_caches() -> None:
+    """Sync filesystem with 'sync' and clear system caches using 'purge'"""
     subprocess.run(["sync"], check=False)
-    process = subprocess.Popen(
-        ["sudo", "-S", "purge"], stdin=subprocess.PIPE, stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True
-    )
-    stdout, stderr = process.communicate(input=sudo_password + "\n")
-    if not process.returncode == 0:
-        warnings.warn("Failed to clear system caches")
+    subprocess.run(["purge"], check=False)
 
 
-def setup(sudo_password: str) -> None:
-    clear_mac_system_caches(sudo_password)
+def setup() -> None:
+    # clear_mac_system_caches()
+    pass
 
 
 def teardown() -> None:
@@ -40,15 +31,24 @@ def task_to_measure():
 def main():
     container_engine: Literal["podman", "docker"] = "podman"
     os.environ["CONTAINER_ENGINE"] = container_engine
-    sudo_password = setup_sudo()
 
-    runner = pyperf.Runner()
+    runner = pyperf.Runner(
+        values=3,  # default = 3
+        warmups=1,  # default = 1
+        processes=4,  # default = 20
+        loops=0,  # default = 0
+        min_time=0.1,  # default = 0.1
+        metadata=None,  # default = None
+        show_name=True,  # default = True
+        program_args=None,  # default = None
+        add_cmdline_args=None,  # default = None
+    )
     runner.timeit(
         name="run start-stack",
         stmt="task_to_measure()",
-        setup="setup(sudo_password)",
+        setup="setup()",
         teardown="teardown()",
-        globals=globals(),
+        globals=globals() | locals(),
     )
 
 

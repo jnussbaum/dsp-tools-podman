@@ -17,11 +17,13 @@ jobs:
         uses: actions/checkout@v4
       - name: Install uv, just, and dependencies
         uses: ./.github/actions/setup
-      - name: Install Podman and podman-compose
+      - name: Install Podman
         run: |
-          sudo apt update
-          sudo apt-get -y install podman
-          uv add podman-compose
+          curl -fsSL -o podman-linux-amd64.tar.gz https://github.com/mgoltzsche/podman-static/releases/latest/download/podman-linux-amd64.tar.gz
+          tar -xzf podman-linux-amd64.tar.gz
+          sudo cp -r podman-linux-amd64/usr podman-linux-amd64/etc /
+      - name: Install podman-compose
+        run: sudo apt install podman-compose
       - name: Versions of podman and podman-compose
         run: |
           podman --version

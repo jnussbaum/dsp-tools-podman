@@ -27,8 +27,7 @@ jobs:
       - name: Versions of podman and podman-compose
         run: |
           podman --version
-          podman-compose --version
-          which podman-compose
+          .venv/bin/podman-compose --version
       - name: benchmark start-stack
         run: uv run scripts/benchmark_start_stack.py
 

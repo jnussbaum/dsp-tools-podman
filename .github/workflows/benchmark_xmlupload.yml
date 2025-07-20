@@ -27,7 +27,7 @@ jobs:
       - name: Versions of podman and podman-compose
         run: |
           podman --version
-          podman-compose --version
+          .venv/bin/podman-compose --version
       - name: benchmark xmlupload
         run: uv run scripts/benchmark_xmlupload.py
 

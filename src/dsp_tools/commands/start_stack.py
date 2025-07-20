@@ -70,7 +70,7 @@ class StackConfiguration:
         self.container_engine = cast(Literal["podman", "docker"], cont_eng)
         self.environment = os.environ.copy()
         if self.container_engine == "podman":
-            self.environment["PODMAN_COMPOSE_PROVIDER"] = ".venv/bin/podman-compose"
+            self.environment["PODMAN_COMPOSE_PROVIDER"] = "podman-compose"
         else:
             self.environment["DOCKER_COMPOSE_PROVIDER"] = "/usr/local/bin/docker-compose"
 

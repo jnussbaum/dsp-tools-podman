@@ -1,5 +1,7 @@
 import os
+import platform
 import subprocess
+import warnings
 from typing import Literal
 
 import pyperf
@@ -11,17 +13,23 @@ def clear_mac_system_caches() -> None:
     """Sync filesystem with 'sync' and clear system caches using 'purge'"""
     subprocess.run(["sync"], check=False)
     subprocess.run(["purge"], check=False)
-    
-    
+
+
 def clear_linux_system_caches() -> None:
     """Sync filesystem with 'sync' and clear system caches using 'echo 3 > /proc/sys/vm/drop_caches'"""
     subprocess.run(["sync"], check=False)
     subprocess.run(["sudo", "sh", "-c", "sync && echo 3 > /proc/sys/vm/drop_caches"], check=False)
 
 
-def setup() -> None:
-    # clear_mac_system_caches()
-    clear_linux_system_caches()
+def setup(container_engine: Literal["podman", "docker"]) -> None:
+    if platform.system() == "Darwin":
+        if container_engine == "docker":
+            clear_mac_system_caches()
+    elif platform.system() == "Linux":
+        clear_linux_system_caches()
+    else:
+        warnings.warn(f"{platform.system()=}")
+    subprocess.run(["dsp-tools", "start-stack", "--no-prune"], check=True)
 
 
 def teardown() -> None:
@@ -50,7 +58,7 @@ def main():
     runner.timeit(
         name="start-stack",
         stmt="task_to_measure()",
-        setup="setup()",
+        setup="setup(container_engine)",
         teardown="teardown()",
         globals=globals() | locals(),
     )

@@ -5,23 +5,27 @@ import warnings
 from typing import Literal
 
 import pyperf
+from loguru import logger
 
 # ruff: noqa:S607 (Starting a process with a partial executable path)
 
 
 def clear_mac_system_caches() -> None:
     """Sync filesystem with 'sync' and clear system caches using 'purge'"""
+    logger.info("Clearing Mac system caches")
     subprocess.run(["sync"], check=False)
     subprocess.run(["purge"], check=False)
 
 
 def clear_linux_system_caches() -> None:
     """Sync filesystem with 'sync' and clear system caches using 'echo 3 > /proc/sys/vm/drop_caches'"""
+    logger.info("Clearing Linux system caches")
     subprocess.run(["sync"], check=False)
     subprocess.run(["sudo", "sh", "-c", "sync && echo 3 > /proc/sys/vm/drop_caches"], check=False)
 
 
 def setup() -> None:
+    logger.info("Entering setup")
     if platform.system() == "Darwin":
         pass
         # clear_mac_system_caches() only works for docker
@@ -29,14 +33,17 @@ def setup() -> None:
         clear_linux_system_caches()
     else:
         warnings.warn(f"{platform.system()=}")
+    logger.info("Run 'dsp-tools start-stack'...")
     subprocess.run(["dsp-tools", "start-stack", "--no-prune"], check=True)
 
 
 def teardown() -> None:
+    logger.info("Entering teardown")
     subprocess.run(["dsp-tools", "stop-stack"], check=True)
 
 
 def task_to_measure():
+    logger.info("Starting task to measure")
     subprocess.run(["dsp-tools", "create", "testdata/json-project/test-project-systematic.json"], check=True)
     subprocess.run(["dsp-tools", "xmlupload", "testdata/xml-data/test-data-systematic.xml"], check=True)
 
@@ -44,6 +51,7 @@ def task_to_measure():
 def main():
     container_engine: Literal["podman", "docker"] = "podman"
     os.environ["CONTAINER_ENGINE"] = container_engine
+    logger.info(f"Container engine: {container_engine}")
 
     runner = pyperf.Runner(
         values=3,  # default = 3

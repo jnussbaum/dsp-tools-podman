@@ -22,6 +22,10 @@ jobs:
           curl -fsSL -o podman-linux-amd64.tar.gz https://github.com/mgoltzsche/podman-static/releases/latest/download/podman-linux-amd64.tar.gz
           tar -xzf podman-linux-amd64.tar.gz
           sudo cp -r podman-linux-amd64/usr podman-linux-amd64/etc /
+      - name: Fix AppArmor profile for podman (see https://github.com/containers/podman/issues/24642)
+        run: |
+          sudo sed -i 's|/usr/bin/|/usr/local/bin/|g' /etc/apparmor.d/podman 2>/dev/null || true
+          sudo apparmor_parser -r /etc/apparmor.d/podman 2>/dev/null || true
       - name: Install podman-compose
         run: uv add podman-compose
       - name: Versions of podman and podman-compose

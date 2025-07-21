@@ -4,13 +4,16 @@
 
 ### Modalities
 
+MacBook Pro, macOS Sequoia 15.5, Chip: Apple M1 Max, OS/Arch: darwin/arm64, 32 GB RAM
+
 podman-compose version 1.5.0
 podman version 5.5.2
-
-crun/runc ???
+podman machine ssh crun --version: crun version 1.20
 
 Docker version 28.3.2
 Docker Compose version v2.38.2
+containerd 1.7.27
+runc 1.2.5
 
 pyperf.Runner which spawns 4 processes, which each run 1 warmup and 3 measurements.
 This results in 12 measurements.
@@ -49,7 +52,8 @@ crun version 1.14.4
 
 docker ???
 docker-compose ???
-crun/runc ???
+containerd ???
+runc ???
 
 ### start-stack
 

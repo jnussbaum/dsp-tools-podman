@@ -50,10 +50,10 @@ podman version 5.5.2
 podman-compose version: 1.5.0
 crun version 1.14.4
 
-docker ???
+docker 28.0.4
 docker-compose ???
-containerd ???
-runc ???
+containerd 1.7.27
+runc 1.2.5
 
 ### start-stack
 

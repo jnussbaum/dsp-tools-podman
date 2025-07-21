@@ -36,12 +36,15 @@ xmlupload: Mean +- std dev: 44.8 sec +- 0.6 sec
 podman
 xmlupload: Mean +- std dev: 43.5 sec +- 1.5 sec
 
+
+
+
 ## Linux
 
 ## Modalities
 
 podman version 5.5.2
-podman-compose version: 1.0.6
+podman-compose version: 1.5.0
 crun version 1.14.4
 
 docker ???
@@ -55,7 +58,7 @@ start-stack: Mean +- std dev: 21.6 sec +- 0.5 sec !!! UNVERIFIED DOCKER VERSION
 (https://github.com/jnussbaum/dsp-tools-podman/actions/runs/16401669907/job/46341996845)
 
 podman:
-
+start-stack: Mean +- std dev: 22.5 sec +- 0.6 sec
 (https://github.com/jnussbaum/dsp-tools-podman/actions/runs/16403464117/job/46346085822)
 
 
@@ -66,5 +69,5 @@ docker:
 ()
 
 podman:
-
+xmlupload: Mean +- std dev: 64.7 sec +- 1.2 sec
 (https://github.com/jnussbaum/dsp-tools-podman/actions/runs/16403513137/job/46346196853)

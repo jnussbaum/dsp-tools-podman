@@ -51,7 +51,7 @@ podman-compose version: 1.5.0
 crun version 1.14.4
 
 docker 28.0.4
-docker-compose ???
+docker-compose 2.36.2
 containerd 1.7.27
 runc 1.2.5
 
@@ -60,6 +60,9 @@ runc 1.2.5
 docker:
 start-stack: Mean +- std dev: 21.6 sec +- 0.5 sec !!! UNVERIFIED DOCKER VERSION
 (https://github.com/jnussbaum/dsp-tools-podman/actions/runs/16401669907/job/46341996845)
+
+...
+(https://github.com/jnussbaum/dsp-tools-podman/actions/runs/16410107631/job/46363080376)
 
 podman:
 start-stack: Mean +- std dev: 22.5 sec +- 0.6 sec

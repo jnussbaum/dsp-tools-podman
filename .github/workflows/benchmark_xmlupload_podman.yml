@@ -1,0 +1,49 @@
+---
+
+name: Benchmark xmlupload podman
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pull-requests: read
+
+jobs:
+  benchmark:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout dsp-tools repo
+        uses: actions/checkout@v4
+      - name: Install uv, just, and dependencies
+        uses: ./.github/actions/setup
+      - name: Install Podman
+        run: |
+          curl -fsSL -o podman-linux-amd64.tar.gz https://github.com/mgoltzsche/podman-static/releases/latest/download/podman-linux-amd64.tar.gz
+          tar -xzf podman-linux-amd64.tar.gz
+          sudo cp -r podman-linux-amd64/usr podman-linux-amd64/etc /
+      - name: Fix AppArmor profile for podman (see https://github.com/containers/podman/issues/24642)
+        run: |
+          sudo sed -i 's|/usr/bin/|/usr/local/bin/|g' /etc/apparmor.d/podman 2>/dev/null || true
+          sudo apparmor_parser -r /etc/apparmor.d/podman 2>/dev/null || true
+      - name: Update crun
+        run: | 
+          # Remove old crun
+          sudo apt remove crun -y
+          
+          # Install a more modern crun from GitHub releases
+          curl -L -o crun https://github.com/containers/crun/releases/download/1.14.4/crun-1.14.4-linux-amd64
+          sudo mv crun /usr/local/bin/crun
+          sudo chmod +x /usr/local/bin/crun
+          
+          # Verify the version
+          crun --version
+      - name: Install podman-compose
+        run: uv add podman-compose
+      - name: Versions of podman and podman-compose
+        run: |
+          podman --version
+          .venv/bin/podman-compose --version
+      - name: benchmark xmlupload
+        run: uv run scripts/benchmark_xmlupload.py podman
+

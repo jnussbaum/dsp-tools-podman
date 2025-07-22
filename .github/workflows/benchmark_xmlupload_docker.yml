@@ -1,0 +1,26 @@
+---
+
+name: Benchmark xmlupload docker
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pull-requests: read
+
+jobs:
+  benchmark:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout dsp-tools repo
+        uses: actions/checkout@v4
+      - name: Install uv, just, and dependencies
+        uses: ./.github/actions/setup
+      - name: Find out docker versions
+        run: |
+          docker version
+          docker compose version
+      - name: benchmark xmlupload
+        run: uv run scripts/benchmark_xmlupload.py docker
+

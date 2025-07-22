@@ -22,5 +22,5 @@ jobs:
           docker version
           docker compose version
       - name: benchmark start-stack
-        run: uv run scripts/benchmark_start_stack.py docker
+        run: uv run scripts/benchmark_start_stack_docker.py
 

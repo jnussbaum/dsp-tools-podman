@@ -45,5 +45,5 @@ jobs:
           podman --version
           .venv/bin/podman-compose --version
       - name: benchmark start-stack
-        run: uv run scripts/benchmark_start_stack.py podman
+        run: uv run scripts/benchmark_start_stack_podman.py
 

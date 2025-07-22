@@ -22,5 +22,5 @@ jobs:
           docker version
           docker compose version
       - name: benchmark xmlupload
-        run: uv run scripts/benchmark_xmlupload.py docker
+        run: uv run scripts/benchmark_xmlupload_docker.py
 

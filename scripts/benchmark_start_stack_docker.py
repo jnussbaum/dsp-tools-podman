@@ -1,10 +1,7 @@
 import os
 import platform
 import subprocess
-import sys
 import warnings
-from typing import Literal
-from typing import cast
 
 import pyperf
 from loguru import logger
@@ -35,8 +32,6 @@ def setup() -> None:
         clear_linux_system_caches()
     else:
         warnings.warn(f"{platform.system()=}")
-    logger.info("Run 'dsp-tools start-stack'...")
-    subprocess.run(["dsp-tools", "start-stack", "--no-prune"], check=True)
 
 
 def teardown() -> None:
@@ -46,13 +41,12 @@ def teardown() -> None:
 
 def task_to_measure():
     logger.info("Starting task to measure")
-    subprocess.run(["dsp-tools", "create", "testdata/json-project/test-project-systematic.json"], check=True)
-    subprocess.run(["dsp-tools", "xmlupload", "testdata/xml-data/test-data-systematic.xml"], check=True)
+    subprocess.run(["dsp-tools", "start-stack", "--no-prune"], check=True)
 
 
-def main(container_engine: Literal["podman", "docker"]):
-    os.environ["CONTAINER_ENGINE"] = container_engine
-    logger.info(f"Container engine: {container_engine}")
+def main():
+    os.environ["CONTAINER_ENGINE"] = "docker"
+    logger.info("Container engine: docker")
 
     runner = pyperf.Runner(
         values=3,  # default = 3
@@ -66,7 +60,7 @@ def main(container_engine: Literal["podman", "docker"]):
         add_cmdline_args=None,  # default = None
     )
     runner.timeit(
-        name="xmlupload",
+        name="start-stack",
         stmt="task_to_measure()",
         setup="setup()",
         teardown="teardown()",
@@ -75,9 +69,4 @@ def main(container_engine: Literal["podman", "docker"]):
 
 
 if __name__ == "__main__":
-    container_engine = sys.argv[1]
-    if container_engine in ["docker", "podman"]:
-        container_engine = cast(Literal["podman", "docker"], container_engine)
-    else:
-        raise ValueError(f"Invalid container engine: {container_engine}")
-    main(container_engine)
+    main()

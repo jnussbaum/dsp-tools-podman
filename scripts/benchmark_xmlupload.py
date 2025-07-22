@@ -1,8 +1,10 @@
 import os
 import platform
 import subprocess
+import sys
 import warnings
 from typing import Literal
+from typing import cast
 
 import pyperf
 from loguru import logger
@@ -48,8 +50,7 @@ def task_to_measure():
     subprocess.run(["dsp-tools", "xmlupload", "testdata/xml-data/test-data-systematic.xml"], check=True)
 
 
-def main():
-    container_engine: Literal["podman", "docker"] = "docker"
+def main(container_engine: Literal["podman", "docker"]):
     os.environ["CONTAINER_ENGINE"] = container_engine
     logger.info(f"Container engine: {container_engine}")
 
@@ -74,4 +75,9 @@ def main():
 
 
 if __name__ == "__main__":
-    main()
+    container_engine = sys.argv[1]
+    if container_engine in ["docker", "podman"]:
+        container_engine = cast(Literal["podman", "docker"], container_engine)
+    else:
+        raise ValueError(f"Invalid container engine: {container_engine}")
+    main(container_engine)

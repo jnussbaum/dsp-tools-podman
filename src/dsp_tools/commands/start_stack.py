@@ -70,7 +70,7 @@ class StackConfiguration:
         self.container_engine = cast(Literal["podman", "docker"], cont_eng)
         self.environment = os.environ.copy()
         if self.container_engine == "podman":
-            self.environment["PODMAN_COMPOSE_PROVIDER"] = "/opt/homebrew/bin/podman-compose"
+            self.environment["PODMAN_COMPOSE_PROVIDER"] = "podman-compose"
         else:
             self.environment["DOCKER_COMPOSE_PROVIDER"] = "/usr/local/bin/docker-compose"
 
@@ -212,7 +212,10 @@ class StackHandler:
             cmd, cwd=self.__docker_path_of_user, check=False, env=self.__stack_configuration.environment
         )
         if not completed_process or completed_process.returncode != 0:
-            msg = "Cannot start the API: Error while executing 'docker compose up -d db'"
+            msg = (
+                f"Cannot start the API: Error while executing 'docker compose up -d db'."
+                f"\n{completed_process.stderr.decode('utf-8') = }"
+            )
             logger.error(f"{msg}. completed_process = '{vars(completed_process)}'")
             raise InputError(msg)
 
@@ -468,13 +471,13 @@ class StackHandler:
             True if everything went well, False otherwise
         """
         cmd = f"{self.__stack_configuration.container_engine} stats --no-stream"
-        if (
-            subprocess.run(
-                cmd.split(), check=False, capture_output=True, env=self.__stack_configuration.environment
-            ).returncode
-            != 0
-        ):
-            raise InputError("Docker is not running properly. Please start Docker and try again.")
+        res = subprocess.run(cmd.split(), check=False, capture_output=True, env=self.__stack_configuration.environment)
+        if res.returncode != 0:
+            raise InputError(
+                f"Docker is not running properly. Please start Docker and try again.\n"
+                f"{cmd = }\n"
+                f"{res.stderr.decode('utf-8') = }"
+            )
         self._copy_resources_to_home_dir()
         self._set_custom_host()
         self._get_sipi_docker_config_lua()

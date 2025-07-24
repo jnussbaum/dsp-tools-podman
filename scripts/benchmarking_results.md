@@ -12,16 +12,16 @@ So in total, the code is executed 20 times, but only 12 are used for the measure
 
 ### Software Versions
 
-MacBook Pro, macOS Sequoia 15.5, Chip: Apple M1 Max, OS/Arch: darwin/arm64, 32 GB RAM
-
-podman-compose version 1.5.0
-podman version 5.5.2
-podman machine ssh crun --version: crun version 1.20
-
-Docker version 28.3.2
-Docker Compose version v2.38.2
-containerd 1.7.27
-runc 1.2.5
+- OS: MacBook Pro, macOS Sequoia 15.5, Chip: Apple M1 Max, OS/Arch: darwin/arm64, 32 GB RAM
+- Podman:
+    - podman-compose version 1.5.0
+    - podman version 5.5.2
+    - podman machine ssh crun --version: crun version 1.20
+- Docker:
+    - Docker version 28.3.2
+    - Docker Compose version v2.38.2
+    - containerd 1.7.27
+    - runc 1.2.5
 
 
 ### start-stack
@@ -44,18 +44,18 @@ podman: Mean +- std dev: 43.5 sec +- 1.5 sec
 
 ## GitHub CI (Ubuntu)
 
-## Software Versions
+### Software Versions
 
-Ubuntu 24.04.2 LTS
-
-podman version 5.5.2
-podman-compose version: 1.5.0
-crun version 1.14.4
-
-docker 28.0.4
-docker-compose 2.36.2
-containerd 1.7.27
-runc 1.2.5
+- OS: Ubuntu 24.04.2 LTS
+- Podman:
+    - podman version 5.5.2
+    - podman-compose version: 1.5.0
+    - crun version 1.14.4
+- Docker:
+    - docker 28.0.4
+    - docker-compose 2.36.2
+    - containerd 1.7.27
+    - runc 1.2.5
 
 ### start-stack
 

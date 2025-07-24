@@ -26,23 +26,18 @@ runc 1.2.5
 
 ### start-stack
 
-docker
-run start-stack: Mean +- std dev: 12.2 sec +- 0.5 sec
+docker: Mean +- std dev: 12.2 sec +- 0.5 sec
 
-docker (with cache resetting)
-run start-stack: Mean +- std dev: 12.8 sec +- 0.5 sec
+docker (with cache resetting): Mean +- std dev: 12.8 sec +- 0.5 sec
 
-podman
-run start-stack: Mean +- std dev: 15.2 sec +- 0.3 sec
+podman: Mean +- std dev: 15.2 sec +- 0.3 sec
 
 
 ### xmlupload
 
-docker
-xmlupload: Mean +- std dev: 44.8 sec +- 0.6 sec
+docker: Mean +- std dev: 44.8 sec +- 0.6 sec
 
-podman
-xmlupload: Mean +- std dev: 43.5 sec +- 1.5 sec
+podman: Mean +- std dev: 43.5 sec +- 1.5 sec
 
 
 
@@ -64,30 +59,26 @@ runc 1.2.5
 
 ### start-stack
 
-docker:
-start-stack: Mean +- std dev: 21.6 sec +- 0.5 sec
+docker: Mean +- std dev: 21.6 sec +- 0.5 sec
 (https://github.com/jnussbaum/dsp-tools-podman/actions/runs/16401669907/job/46341996845)
-start-stack: Mean +- std dev: 21.1 sec +- 0.5 sec
+
+docker: Mean +- std dev: 21.1 sec +- 0.5 sec
 (https://github.com/jnussbaum/dsp-tools-podman/actions/runs/16410107631/job/46363080376)
-start-stack: Mean +- std dev: 22.2 sec +- 0.1 sec
+
+docker: Mean +- std dev: 22.2 sec +- 0.1 sec
 (https://github.com/jnussbaum/dsp-tools-podman/actions/runs/16444970781/job/46474407098)
 
-podman:
-start-stack: Mean +- std dev: 22.5 sec +- 0.6 sec
+podman: Mean +- std dev: 22.5 sec +- 0.6 sec
 (https://github.com/jnussbaum/dsp-tools-podman/actions/runs/16403464117/job/46346085822)
-start-stack: Mean +- std dev: 22.5 sec +- 0.5 sec
+
+podman: Mean +- std dev: 22.5 sec +- 0.5 sec
 (https://github.com/jnussbaum/dsp-tools-podman/actions/runs/16444993154/job/46474483226)
 
 
 ### xmlupload
 
-docker:
-xmlupload: Mean +- std dev: 66.1 sec +- 1.6 sec
+docker: Mean +- std dev: 66.1 sec +- 1.6 sec
 (https://github.com/jnussbaum/dsp-tools-podman/actions/runs/16444997558/job/46474498479)
 
-
-podman:
-<!-- xmlupload: Mean +- std dev: 64.7 sec +- 1.2 sec
-(https://github.com/jnussbaum/dsp-tools-podman/actions/runs/16403513137/job/46346196853) -->
-xmlupload: Mean +- std dev: 63.2 sec +- 0.6 sec
+podman: Mean +- std dev: 63.2 sec +- 0.6 sec
 (https://github.com/jnussbaum/dsp-tools-podman/actions/runs/16445006761/job/46474529533)

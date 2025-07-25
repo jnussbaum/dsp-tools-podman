@@ -2,10 +2,10 @@
 
 ## Methodology
 
-pyperf.Runner which spawns 4 processes, which each run 1 warmup and 3 measurements.
-This results in 12 measurements.
-Before doing the actual measurements, pyperf spawns 1 calibrating process which also runs 1 warmup + 3 measurements.
-So in total, the code is executed 20 times, but only 12 are used for the measurement.
+pyperf.Runner which spawns 1 process, which each run 1 warmup and 60 measurements.
+This results in 60 measurements.
+Before doing the actual measurements, pyperf spawns 1 calibrating process which also runs 1 warmup + 60 measurements.
+So in total, the code is executed 122 times, but only 60 are used for the measurement.
 
 
 ## Mac
@@ -30,7 +30,7 @@ docker: start-stack: Mean +- std dev: 12.4 sec +- 0.5 sec
 stable
 
 podman: start-stack: Mean +- std dev: 13.9 sec +- 0.6 sec 
-stable! 
+stable
 
 
 ### xmlupload

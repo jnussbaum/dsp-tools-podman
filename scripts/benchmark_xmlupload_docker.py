@@ -20,7 +20,7 @@ def teardown() -> None:
 def task_to_measure():
     logger.info("Starting task to measure")
     subprocess.run(["dsp-tools", "create", "testdata/json-project/test-project-systematic.json"], check=True)
-    subprocess.run(["dsp-tools", "xmlupload", "testdata/xml-data/test-data-systematic.xml"], check=True)
+    subprocess.run(["dsp-tools", "xmlupload", "--skip-validation", "testdata/xml-data/test-data-systematic.xml"], check=True)
 
 
 def main():

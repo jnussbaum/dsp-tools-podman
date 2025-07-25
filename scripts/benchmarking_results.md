@@ -26,11 +26,8 @@ So in total, the code is executed 20 times, but only 12 are used for the measure
 
 ### start-stack
 
-docker: start-stack: Mean +- std dev: 12.1 sec +- 0.5 sec
-(processes=10, still unstable)
-
-start-stack: Mean +- std dev: 12.4 sec +- 1.1 sec
-(processes=20, values=3, still unstable: the maximum (19.8 sec) is 60% greater than the mean (12.4 sec))
+docker: start-stack: Mean +- std dev: 12.4 sec +- 0.5 sec
+stable
 
 podman: start-stack: Mean +- std dev: 13.9 sec +- 0.6 sec 
 stable! 

@@ -28,9 +28,9 @@ def main():
     logger.info("Container engine: docker")
 
     runner = pyperf.Runner(
-        values=3,  # default = 3
+        values=60,  # default = 3
         warmups=1,  # default = 1
-        processes=10,  # default = 20
+        processes=1,  # default = 20
         loops=0,  # default = 0
         min_time=0.1,  # default = 0.1
         metadata=None,  # default = None

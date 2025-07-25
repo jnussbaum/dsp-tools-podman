@@ -26,11 +26,11 @@ So in total, the code is executed 20 times, but only 12 are used for the measure
 
 ### start-stack
 
-docker: Mean +- std dev: 12.2 sec +- 0.5 sec
+docker: start-stack: Mean +- std dev: 12.4 sec +- 0.5 sec
+stable
 
-docker (with cache resetting): Mean +- std dev: 12.8 sec +- 0.5 sec
-
-podman: Mean +- std dev: 15.2 sec +- 0.3 sec
+podman: start-stack: Mean +- std dev: 13.9 sec +- 0.6 sec 
+stable! 
 
 
 ### xmlupload

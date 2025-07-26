@@ -35,7 +35,7 @@ podman: start-stack: Mean +- std dev: 13.9 sec +- 0.6 sec
 
 docker: Mean +- std dev: 32.0 sec +- 1.1 sec
 
-podman: 
+podman: Mean +- std dev: 31.5 sec +- 1.9 sec
 
 
 

@@ -27,17 +27,15 @@ So in total, the code is executed 122 times, but only 60 are used for the measur
 ### start-stack
 
 docker: start-stack: Mean +- std dev: 12.4 sec +- 0.5 sec
-stable
 
 podman: start-stack: Mean +- std dev: 13.9 sec +- 0.6 sec 
-stable
 
 
 ### xmlupload
 
-docker: Mean +- std dev: 44.8 sec +- 0.6 sec
+docker: Mean +- std dev: 32.0 sec +- 1.1 sec
 
-podman: Mean +- std dev: 43.5 sec +- 1.5 sec
+podman: Mean +- std dev: 31.5 sec +- 1.9 sec
 
 
 
@@ -59,26 +57,18 @@ podman: Mean +- std dev: 43.5 sec +- 1.5 sec
 
 ### start-stack
 
-docker: Mean +- std dev: 21.6 sec +- 0.5 sec
-(https://github.com/jnussbaum/dsp-tools-podman/actions/runs/16401669907/job/46341996845)
+docker: Mean +- std dev: 20.1 sec +- 0.4 sec
+(https://github.com/jnussbaum/dsp-tools-podman/actions/runs/16533152375/job/46762710036)
 
-docker: Mean +- std dev: 21.1 sec +- 0.5 sec
-(https://github.com/jnussbaum/dsp-tools-podman/actions/runs/16410107631/job/46363080376)
+podman: Mean +- std dev: 19.7 sec +- 0.5 sec
+(https://github.com/jnussbaum/dsp-tools-podman/actions/runs/16533155214/job/46762717192)
 
-docker: Mean +- std dev: 22.2 sec +- 0.1 sec
-(https://github.com/jnussbaum/dsp-tools-podman/actions/runs/16444970781/job/46474407098)
-
-podman: Mean +- std dev: 22.5 sec +- 0.6 sec
-(https://github.com/jnussbaum/dsp-tools-podman/actions/runs/16403464117/job/46346085822)
-
-podman: Mean +- std dev: 22.5 sec +- 0.5 sec
-(https://github.com/jnussbaum/dsp-tools-podman/actions/runs/16444993154/job/46474483226)
 
 
 ### xmlupload
 
-docker: Mean +- std dev: 66.1 sec +- 1.6 sec
-(https://github.com/jnussbaum/dsp-tools-podman/actions/runs/16444997558/job/46474498479)
+docker: Mean +- std dev: 40.6 sec +- 0.4 sec
+(https://github.com/jnussbaum/dsp-tools-podman/actions/runs/16533492582/job/46763634121)
 
-podman: Mean +- std dev: 63.2 sec +- 0.6 sec
-(https://github.com/jnussbaum/dsp-tools-podman/actions/runs/16445006761/job/46474529533)
+podman: Mean +- std dev: 42.0 sec +- 0.5 sec
+(https://github.com/jnussbaum/dsp-tools-podman/actions/runs/16533494437/job/46763639187)
